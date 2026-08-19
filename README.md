@@ -177,5 +177,6 @@ MIT.
 
 ---
 
-Built by [Crypto Recovers](https://cryptorecovers.com/), the official companion
-tool of [forgotwalletpassword.com](https://forgotwalletpassword.com/).
+Built by [Crypto Recovers](https://cryptorecovers.com/) — the company behind
+[forgotwalletpassword.com](https://forgotwalletpassword.com/), where we write
+wallet-password recovery guides and education.
