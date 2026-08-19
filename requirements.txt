@@ -1,0 +1,7 @@
+# wallet2hash core runs on the Python standard library only (zero hard dependencies).
+#
+# Optional, for extended offline password verification:
+#
+#   pycryptodome>=3.15   # AES-GCM / AEAD verification (MetaMask, etc.)
+#   cryptography>=3.4    # scrypt fallback on Pythons without hashlib.scrypt
+#   berkeleydb>=18.1     # faster Bitcoin Core wallet.dat reads (a pure-Python reader is built in)

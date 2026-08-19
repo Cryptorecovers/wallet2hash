@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wallet2hash"
+version = "0.1.0"
+description = "Universal offline cryptocurrency wallet format inspector and password-verification hash extractor"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "Crypto Recovers" }]
+keywords = ["cryptocurrency", "wallet", "hashcat", "password", "recovery", "forensics"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Security :: Cryptography",
+    "Topic :: Utilities",
+]
+# Deliberately zero mandatory dependencies: the core detector/extractor runs on the
+# Python standard library only, so it can be used fully air-gapped.
+dependencies = []
+
+[project.optional-dependencies]
+# Enables --verify for formats whose authenticated cipher (AES-GCM, secp256k1 ECIES,
+# BIP38 EC-multiply) cannot be checked with the bundled reference AES fallback.
+# Either library works; pycryptodome is preferred, cryptography is the scrypt fallback.
+crypto = ["pycryptodome>=3.15", "cryptography>=3.4"]
+# Accelerates Bitcoin Core / Core-derived Berkeley DB wallet.dat reads. Extraction
+# works without it via a built-in pure-Python B-tree reader; berkeleydb is just faster.
+bdb = ["berkeleydb>=18.1"]
+# Test/dev tooling (the suite also runs under plain `python -m unittest`).
+dev = ["pytest>=7.0"]
+all = ["pycryptodome>=3.15", "cryptography>=3.4", "berkeleydb>=18.1"]
+
+[project.scripts]
+wallet2hash = "wallet2hash.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["wallet2hash*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
